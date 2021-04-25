@@ -32,7 +32,7 @@ function search(arr, n){
     return
 }
 
-
+/*
 var readline = require('readline');
 var rl = readline.createInterface({
   input: process.stdin
@@ -58,3 +58,4 @@ function solve(lines) {
     for (let j=Number(arrLen)+1; j<lines.length; j++){ search(arr, lines[j])}
     return
 } 
+*/
