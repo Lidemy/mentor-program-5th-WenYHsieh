@@ -6,7 +6,6 @@ function reverse(str) {
     }
     result = result.join('');
     console.log(result);
-    return 
 }
 
 
