@@ -1,7 +1,11 @@
 function starGenerator(N) {
+  let starContainer
   for (let i = 1; i <= N; i++) {
-    console.log('*'.repeat(i))
+    starContainer = ''
+    for (let j = 1; j <= i; j++) {
+      starContainer += '*'
+    }
+    console.log(starContainer)
   }
 }
-
-starGenerator(10)
+starGenerator(5)
