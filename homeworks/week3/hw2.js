@@ -18,7 +18,7 @@ function NarcissisticNumber(start, end) {
     for (let j = 0; j < power; j++) {
       temp += Number(currentNumber[j]) ** power
     }
-    if (temp === i) { console.log(i) }
+    if (temp === i) { return i }
   }
 }
-NarcissisticNumber(5, 200)
+console.log(NarcissisticNumber(5, 200))

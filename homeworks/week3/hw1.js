@@ -8,4 +8,5 @@ function starGenerator(N) {
     console.log(starContainer)
   }
 }
+
 starGenerator(5)

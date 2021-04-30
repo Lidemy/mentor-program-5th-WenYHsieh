@@ -5,14 +5,14 @@
 */
 function isPrime(N) {
   if (N === 1) {
-    return console.log('Composite')
+    return 'Composite'
   }
   for (let i = 2; i <= N - 1; i++) { // 列舉 2 ~ 除了自己以外的所有數字
     if (N % i === 0) { // 如果被其他數字除之後能整除，就是 Composite
-      return console.log('Composite')
+      return 'Composite'
     }
   }
-  return console.log('Prime')
+  return 'Prime'
 }
 
-isPrime(2)
+console.log(isPrime(2))

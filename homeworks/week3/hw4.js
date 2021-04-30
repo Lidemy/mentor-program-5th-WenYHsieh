@@ -2,9 +2,9 @@ function isPalindrome(str) {
   let strReversed = ''
   for (let i = str.length - 1; i >= 0; i--) { strReversed += str[i] }
   if (str === strReversed) {
-    console.log('True')
+    return 'True'
   } else {
-    console.log('False')
+    return 'False'
   }
 }
-isPalindrome('hello')
+console.log(isPalindrome('hello'))
