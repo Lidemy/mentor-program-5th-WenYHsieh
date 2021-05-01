@@ -6,14 +6,41 @@
 
 */
 
-function showdown(A, B, rule) {
+function guessWhoWins(A, B, rule) {
   if (A === B) { return 'DRAW' }
   if (rule === 1) {
-    if (A > B) { return 'A' } else { return 'B' }
+    return A > B ? 'A' : 'B'
+    // if (A > B) { return 'A' } else { return 'B' }
   }
   if (rule === -1) {
-    if (A > B) { return 'B' } else { return 'A' }
+    return A > B ? 'B' : 'A'
+    // if (A > B) { return 'B' } else { return 'A' }
   }
 }
 
-showdown(1, 2, -1)
+guessWhoWins(1, 2, -1)
+
+const readline = require('readline')
+
+const rl = readline.createInterface({
+  input: process.stdin
+})
+
+const lines = []
+
+rl.on('line', (line) => {
+  lines.push(line)
+})
+
+rl.on('close', () => {
+  solve(lines)
+})
+
+function solve(lines) {
+  lines.shift()
+  let params = []
+  for (let i = 0; i < lines.length; i++) {
+    params = lines[i].split(' ')
+    guessWhoWins(BigInt(params[0]), BigInt(params[1]), Number(params[2]))
+  }
+}

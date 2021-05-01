@@ -3,16 +3,23 @@
 質數: log 'Prime'
 合數 & 1: log 'Composite'
 */
+
+/* 判斷是否為 Prime, 是: true, 否: false */
 function isPrime(N) {
   if (N === 1) {
-    return 'Composite'
+    return false
   }
   for (let i = 2; i <= N - 1; i++) { // 列舉 2 ~ 除了自己以外的所有數字
     if (N % i === 0) { // 如果被其他數字除之後能整除，就是 Composite
-      return 'Composite'
+      return false
     }
   }
-  return 'Prime'
+  return true
 }
 
-console.log(isPrime(2))
+/* 依據 isPrime() 印出這個數字是 'Prime' or 'Composite' */
+function logPrime(N) {
+  return isPrime(N) ? 'Prime' : 'Composite'
+}
+
+console.log(logPrime(8))

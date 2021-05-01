@@ -7,7 +7,7 @@
   2.2 for loop 列舉出每個位數數字 => 得到每個位數數字的位數次方，累加到變數當中存著，直到列完
 3. if 這個轉換後的數字等於原本的 => 他就是水仙花數字，印出來
 */
-function NarcissisticNumber(start, end) {
+function printNarcissisticNumber(start, end) {
   let power
   let temp
   let currentNumber
@@ -15,10 +15,8 @@ function NarcissisticNumber(start, end) {
     temp = 0
     currentNumber = i.toString()
     power = currentNumber.length
-    for (let j = 0; j < power; j++) {
-      temp += Number(currentNumber[j]) ** power
-    }
+    for (let j = 0; j < power; j++) temp += Number(currentNumber[j]) ** power
     if (temp === i) { return i }
   }
 }
-console.log(NarcissisticNumber(5, 200))
+console.log(printNarcissisticNumber(5, 200))
