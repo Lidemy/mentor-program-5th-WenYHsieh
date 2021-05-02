@@ -6,13 +6,9 @@
 
 /* 判斷是否為 Prime, 是: true, 否: false */
 function isPrime(N) {
-  if (N === 1) {
-    return false
-  }
-  for (let i = 2; i <= N - 1; i++) { // 列舉 2 ~ 除了自己以外的所有數字
-    if (N % i === 0) { // 如果被其他數字除之後能整除，就是 Composite
-      return false
-    }
+  if (N === 1) return false
+  for (let i = 2; i <= N - 1; i++) {
+    if (N % i === 0) return false
   }
   return true
 }
