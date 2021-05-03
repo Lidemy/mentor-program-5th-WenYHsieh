@@ -15,7 +15,9 @@ function logNarcissisticNumber(start, end) {
     temp = 0
     currentNumber = i.toString()
     power = currentNumber.length
-    for (let j = 0; j < power; j++) temp += Number(currentNumber[j]) ** power
+    for (let j = 0; j < power; j++) {
+      temp += Number(currentNumber[j]) ** power
+    }
     if (temp === i) console.log(i)
   }
 }
