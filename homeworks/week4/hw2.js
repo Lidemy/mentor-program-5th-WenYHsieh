@@ -32,8 +32,12 @@ function list() {
   request(
     `${baseURL}?_limit=20`,
     (err, response, body) => {
-      JSON.parse(body)
-        .forEach((book) => console.log(book.id, book.name))
+      try {
+        JSON.parse(body)
+          .forEach((book) => console.log(book.id, book.name))
+      } catch (err) {
+        console.log(err)
+      }
     }
   )
 }
@@ -42,7 +46,11 @@ function read(n) {
   request(
     `${baseURL}/${n}`,
     (err, response, body) => {
-      console.log(JSON.parse(body).id, JSON.parse(body).name)
+      try {
+        console.log(JSON.parse(body).id, JSON.parse(body).name)
+      } catch (err) {
+        console.log(err)
+      }
     }
   )
 }
@@ -52,13 +60,27 @@ function update(n, updatedName) {
     {
       url: `${baseURL}/${n}`,
       form: { name: updatedName }
+    },
+    (err, response) => {
+      try {
+        console.log('done')
+      } catch (err) {
+        console.log(err)
+      }
     }
   )
 }
 
 function del(n) {
   request.delete(
-    `${baseURL}/${n}`
+    { url: `${baseURL}/${n}` },
+    (err, response) => {
+      try {
+        console.log('done')
+      } catch (err) {
+        console.log(err)
+      }
+    }
   )
 }
 
@@ -67,6 +89,13 @@ function create(newBookName) {
     {
       url: baseURL,
       form: { name: newBookName }
+    },
+    (err, response) => {
+      try {
+        console.log('done')
+      } catch (err) {
+        console.log(err)
+      }
     }
   )
 }
