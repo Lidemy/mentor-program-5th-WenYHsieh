@@ -26,6 +26,8 @@ switch (action[2]) {
 
   case 'create': create(action[3])
     break
+  default:
+    console.log('plase enter a command. avaliable: list, read, update, delete, create')
 }
 
 function list() {
@@ -43,6 +45,7 @@ function list() {
 }
 
 function read(n) {
+  if (n === undefined) return console.log('please enter a book index')
   request(
     `${baseURL}/${n}`,
     (err, response, body) => {
@@ -56,6 +59,7 @@ function read(n) {
 }
 
 function update(n, updatedName) {
+  if (n === undefined | updatedName === undefined) return console.log('please enter a book index or book name')
   request.patch(
     {
       url: `${baseURL}/${n}`,
@@ -72,6 +76,7 @@ function update(n, updatedName) {
 }
 
 function del(n) {
+  if (n === undefined) return console.log('please enter a book index')
   request.delete(
     { url: `${baseURL}/${n}` },
     (err, response) => {
@@ -85,6 +90,7 @@ function del(n) {
 }
 
 function create(newBookName) {
+  if (newBookName === undefined) return console.log('please enter a book name')
   request.post(
     {
       url: baseURL,
