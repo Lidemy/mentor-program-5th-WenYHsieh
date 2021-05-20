@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+  <title>Document</title>
+</head>
+<style>
+  body{
+    background-color:rgb(114, 111, 111, 0.2);
+    font-family: MicrosoftJhengHei;
+  }
+  footer{
+    background-color: black;
+    height:68px;
+    color:#999999;
+    font-size: 13px;
+    line-height: 68px;
+    text-align: center;
+  }
+  form{
+    background-color: white;
+    box-shadow: 1.8px 2.4px 5px 0 rgba(0, 0, 0, 0.3);
+    width: 645px;
+    height:1150px;
+    margin: 200px auto
+  }
+  .header{
+    background-color: #fad312;
+    height:8px;
+  }
+  .form-wrapper{
+    margin:0 auto;
+    position: relative;
+    top: 54px;
+    left: 48px
+  }
+  .title{
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 35px;
+  }
+  .description{
+    font-size: 14px;
+    line-height: 1.5em;
+  }
+  .description-special{
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  .star{
+    color:#e74149;
+    font-size: 20px;
+  }
+  .note{
+    color:#e74149;
+    font-size: 16px;
+    margin: 22px 264px 55px 2px;
+  }
+  .subtitle{
+    font-size: 20px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+  .subtitle-special{
+    font-size: 20px;
+    margin-top: 50px;
+    margin-bottom: 12px;
+  }
+  input[type='text'], input[type='email']{
+    padding-top:3px;
+    padding-bottom :3px; 
+    padding-right: 90px;
+  }
+  input[type='radio']{
+    font-size:14px;
+  }
+  ::placeholder {
+  color: #afafaf;
+  }
+  .submit{
+    margin: 40px 94px 19px 2px;
+    padding: 13px 30px;
+    border: 0px;
+    border-radius: 3px;
+    background-color: #fad312;
+    font-size: 15px;
+  }
+  @media(max-width: 768px){
+    
+  }
+
+
+
+</style>
+<body>
+  <form>
+    <div class="header"></div>
+    <div class="form-wrapper">
+      <div class="title">新拖延運動報名表單</div>
+      <p class="description">
+        活動日期：2020/12/10 ~ 2020/12/11 <br>
+        活動地點：台北市大安區新生南路二段1號 <br>
+      </p>
+      <div class="note">* 必填</div>
+      <div class="subtitle">暱稱<span class="star"> *</span><br></div>
+      <input type="text" placeholder='您的回答' required>
+
+      <div class="subtitle">電子郵件<span class="star"> *</span><br></div>
+      <input type="email" placeholder='您的電子郵件' required>
+
+      <div class="subtitle">手機號碼<span class="star"> *</span><br></div>
+      <input type="text" placeholder='您的手機號碼' pattern="[0-9]{10}" required>
+      
+      <div class="subtitle">報名類型<span class="star"> *</span><br></div>
+      <input type="radio" required> 躺在床上用想像力實作<br><br>
+      <input type="radio" required> 趴在地上滑手機找現成的
+      
+      <div class="subtitle">怎麼知道這個活動的？<span class="star"> *</span><br> </div>
+      <input type="text" placeholder='您的回答' required>
+     
+      <div class="subtitle-special">其他</div>
+      <div class="description-special">對活動的一些建議</div>
+      <input type="text" placeholder='您的回答'><br>
+      <input type='submit' class='submit' value='提交'>
+      <div class="description">請勿透過表單送出您的密碼。</div>
+    </div>
+  </form>
+  <footer>
+    © 2020 © Copyright. All rights Reserved.
+  </footer>
+</body>
+</html>
