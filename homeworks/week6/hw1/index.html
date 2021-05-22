@@ -174,10 +174,21 @@
       font-size: 14px;
       line-height: 43px;
     }
-    .section-discription-left,.section-discription-right{
+    .section-discription-left{
       text-align:left;
     }
-
+    .section-discription-right{
+      margin-top: 20px;
+      text-align:right;
+    }
+    div.link{
+      color: black;
+      font-size: 16px;
+    }
+    div .footer-logo{
+      color: #489846;
+      font-size:36px
+    }
     .footer-copyright{
       height:48px;
       background-color:#35564b;
@@ -187,7 +198,7 @@
       line-height: 48px;
     }
 
-    @media(max-width: 768px) {
+    @media(max-width: 1000px) {
       .navbar .wrapper{
         flex-direction: column;
         height: 120px;
@@ -199,6 +210,7 @@
       }
       .img-wrapper, .section-comment{
         flex-direction: column;
+        justify-content: center;
       }
       .img-wrapper div{
         flex: 100%;
@@ -207,6 +219,23 @@
       .comment-text{
         width:80%;
         margin:40px
+      }
+      .section-discription-left{
+        line-height:normal;
+      }
+      .footer-description{
+        flex-direction: column;
+      }
+      .section-discription-right{
+        margin-top: 0px;
+        text-align:center;
+        line-height: normal;
+      }
+      div .footer-logo{
+        font-size:36px
+      }
+      div .link{
+        margin-bottom:5px;
       }
     }
     
@@ -283,10 +312,10 @@
         營業時間：週一〜週五 09:00~18:00 / 週六、週日、國定假日（含連假）休息<br>
         email：service@justabite.com.tw <br>
       </p>
-      <p class="section-discription-right">
-        <span>Just A Bite!</span><br>
-        Facebook / Instagram / Youtube<br>
-      </p>
+      <div class="section-discription-right">
+        <div class='footer-logo'>Just A Bite!</div>
+        <div class='link'>Facebook / Instagram / Youtube</div>
+      </div>
     </div>
     <div class="footer-copyright">Copyright © 2020 Just A Bite All Rights Reserved. 咬一口股份有限公司版權所有</div>
   </footer>
