@@ -1,0 +1,149 @@
+nav{
+  display: flex;
+  justify-content: space-between;
+  max-width: 1920px;
+  height: 84px;
+  box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+  align-items: center;
+}
+.nav-bar__title{
+  font-size: 36px;
+  color:#489846;
+  margin-left: 96px;
+}
+.nav-bar__inner-wrapper{
+  display:flex;
+  align-items: center;
+  margin-right: 80px;
+}
+.nav-bar__option{
+  margin-right: 12px;
+  font-size: 18px;
+  padding: 12px 24px;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+.option-active > a, .nav-bar__option:hover > a{
+  color: white
+}
+
+.option-active, .nav-bar__option:hover{
+  background-color: #ff7286;
+  border-radius: 8px;
+}
+
+.questions__wrapper{
+  max-width: 755px;
+  margin:0 auto;  
+  padding:20px
+}
+
+.questions__title{
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 75px;
+}
+
+.questions__title::before{
+  content: '';
+  display: inline-block;
+  width: 15px;
+  height: 38px;
+  background-color: #a3dea2;
+  margin-right: 15px;
+  vertical-align: middle;
+}
+
+.questions__mark{
+  color:#70b282;
+  font-size: 24px;
+}
+.questions__subtitle{
+  font-size: 18px;
+}
+.questions__content{
+  font-size: 16px;
+  padding-left: 45px;
+  line-height: 2em;  
+  overflow: hidden;
+  max-height: 0px;
+  transition: max-height 0.8s;
+}
+.questions__title-wrapper:hover{
+  cursor: pointer;
+  color:gray
+}
+
+hr{
+  background-color: #a6e2c0;
+  height: 1px;
+  border:none
+}
+
+.toggleClass{
+  max-height: 200px;
+}
+
+footer{
+  display: flex;
+  background-color: #e8efee;
+  justify-content: space-between;
+}
+
+.footer__info-wrapper{
+  font-size: 14px;
+  line-height:1em;
+  padding-left: 5%;
+  margin: 40px 0;
+}
+.footer__logo{
+  font-size: 36px;
+  color:#489846;
+}
+.footer__links{
+  font-size: 14px;
+}
+.footer__links-wrapper{
+  text-align: right;
+  padding-right: 5%;
+  margin-top: 35px;
+}
+.copy-right{
+  height:48px;
+  text-align: center;
+  line-height: 48px;
+  background-color: #35564b;
+  color: white
+}
+
+@media(max-width: 768px) {
+  nav{
+    flex-direction: column;
+    height: 150px;
+    justify-content:center;
+    
+  }
+  .nav-bar__inner-wrapper{
+    justify-content: center;
+    margin-right: 0;
+  }
+  .nav-bar__title{
+    margin-left: 0px;
+  }
+  footer{
+    flex-direction: column-reverse;
+  }
+  .footer__links-wrapper{
+    text-align: center;
+    margin-top: 35px;
+  }
+  .footer__info-wrapper{
+    padding-left: 5%;
+    margin: 20px 0;
+  }
+}
