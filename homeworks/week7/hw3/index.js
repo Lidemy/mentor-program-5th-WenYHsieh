@@ -22,7 +22,7 @@ function monitorAdd() {
   inputToDo.addEventListener('keydown',
     (e) => {
       if (e.keyCode === 13 && inputToDo.value !== '') {
-        const nextId = Object.keys(todos).unshift() + 1
+        const nextId = (parseInt(Object.keys(todos).pop()) + 1).toString()
         todos[nextId] = inputToDo.value
         inputToDo.value = ''
         render()
@@ -50,8 +50,8 @@ function init() {
     4: 'clean desktop',
     5: 'take packages'
   }
-  monitorAdd()
   render()
+  monitorAdd()
 }
 
 init()
