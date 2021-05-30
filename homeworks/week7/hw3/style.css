@@ -53,6 +53,7 @@ label{
 
 input[type='checkbox']:checked + label{
   text-decoration: line-through #cbc9cf;
+  color: #cbc9cf;
 }
 
 .todo-container{
