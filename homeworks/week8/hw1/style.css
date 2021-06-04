@@ -1,0 +1,261 @@
+nav{
+  display: flex;
+  justify-content: space-between;
+  max-width: 1920px;
+  height: 84px;
+  box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+  align-items: center;
+}
+.nav-bar__title{
+  font-size: 36px;
+  color:#489846;
+  margin-left: 96px;
+}
+.nav-bar__inner-wrapper{
+  display:flex;
+  align-items: center;
+  margin-right: 80px;
+}
+.nav-bar__option{
+  margin-right: 12px;
+  font-size: 18px;
+  padding: 12px 24px;
+  transition: 0.3s;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+.option-active > a, .nav-bar__option:hover > a{
+  color: white
+}
+
+.option-active, .nav-bar__option:hover{
+  background-color: #ff7286;
+  border-radius: 8px;
+}
+
+footer{
+  display: flex;
+  background-color: #e8efee;
+  justify-content: space-between;
+}
+
+.footer__info-wrapper{
+  font-size: 14px;
+  line-height:1em;
+  padding-left: 5%;
+  margin: 40px 0;
+}
+.footer__logo{
+  font-size: 36px;
+  color:#489846;
+}
+.footer__links{
+  font-size: 14px;
+}
+.footer__links-wrapper{
+  text-align: right;
+  padding-right: 5%;
+  margin-top: 35px;
+}
+.copy-right{
+  height:48px;
+  text-align: center;
+  line-height: 48px;
+  background-color: #35564b;
+  color: white
+}
+
+.lottery__background{ /*抽獎頁面*/
+  height: 767px;
+  background: url(./games-bn.png);
+  background-size: cover;
+  position: relative;
+}
+
+.lottery__info{
+  width: 500px;
+  height: 560px;
+  background-color: white;
+  border-radius: 16px;
+  position:absolute;
+  top: 56px;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.lottery__info-title{
+  font-size: 24px;
+  color: #5ec1b6;
+  font-weight: bold;
+  text-align: center;
+  margin: 40px 60px;
+}
+.lottery__info-outer-wrapper{
+  padding: 0px 20px;
+}
+
+.lottery__info-content-wrapper{
+  display: flex;
+  width: 460px;
+  border: none;
+  border-bottom: dashed 1px #cdcdcd;
+}
+
+.lottery__info-subtitle{
+  font-weight: bold;
+  margin-right: 10px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.lottery__info-content{
+  letter-spacing: 1px;
+  line-height: 1.5em;
+  padding-left: 10px;  
+  font-size: 16px;
+  color: #322929;
+  margin: 10px
+}
+
+.lottery_btn{
+  width: 400px;
+  height: 55px;
+  font-size: 20px;
+  color: white;
+  background-color: #e62a45;
+  border-radius: 8px;
+  text-align: center;
+  line-height: 55px;
+  margin: 15px auto;
+  transition: 0.5s;
+  z-index: 2;
+  position: relative
+}
+.lottery_btn:hover{
+  cursor: pointer;
+  transform: scale(0.95);
+  background-color: #bb2138;
+}
+
+.block{
+  width:90px
+}
+
+.prize__first{
+  background: url(https://cdn.pixabay.com/photo/2019/07/04/06/35/flight-4315953_960_720.jpg);
+  height: 767px;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+
+.prize__second{
+  background: url(https://cdn.pixabay.com/photo/2016/11/30/08/46/living-room-1872192_960_720.jpg);
+  height: 767px;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+
+.prize__third{
+  background: url(https://cdn.pixabay.com/photo/2017/08/10/03/00/youtube-2617510_960_720.jpg);
+  height: 767px;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+
+.prize__none{
+  background: url(./no_prize.jpg);
+  height: 767px;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+
+.prize__info-wrapper{
+  z-index: 2;
+  position: relative;
+  margin-top: 20%;
+}
+
+.prize__result::after{
+  content: " ";
+  background-color: rgba(255, 255, 255, 0.6);
+  position: absolute;
+  top:0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+}
+
+.prize__info{
+  text-align: center;
+  font-size: 36px;
+  margin: 50px;
+}
+
+.hide{
+  display: none;
+}
+
+@media(max-width: 768px) {
+  nav{
+    flex-direction: column;
+    height: 150px;
+    justify-content:center;
+    
+  }
+  .nav-bar__inner-wrapper{
+    justify-content: space-around;
+    margin: 0 auto;
+  }
+
+  .nav-bar__title{
+    margin-left: 0px;
+  }
+  footer{
+    flex-direction: column-reverse;
+  }
+  .footer__links-wrapper{
+    text-align: center;
+    margin-top: 35px;
+  }
+  .footer__info-wrapper{
+    padding-left: 5%;
+    margin: 20px 0;
+  }
+
+  .lottery__info{
+    width: 280px
+  }
+  .lottery__info-title{
+    font-size: 15px;
+    margin: 20px 30px;
+  }
+  .lottery_btn{
+    width: 180px;
+    margin: 30px auto
+  }
+
+  .lottery__info-subtitle{
+    font-size: 15px;
+  }
+  .lottery__info-content{
+    font-size: 12px;
+  }
+  .lottery__info-content-wrapper{
+    margin-top: 10px;
+    flex-direction: column;
+    width: 250px;
+    border: none;
+    border-bottom: dashed 1px #cdcdcd;
+  }
+  .prize__info{
+    font-size: 25px;
+  }
+}
