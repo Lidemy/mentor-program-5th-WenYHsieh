@@ -66,7 +66,7 @@ function switchGame() {
 function showMoreGame() {
   showMoreBtn.addEventListener('click', (e) => {
     ciikShowMoretimes++
-    render(e.target.getAttribute('name'), 20 + (10 * ciikShowMoretimes))
+    render(e.target.getAttribute('name'), 20 + (20 * ciikShowMoretimes))
   })
 }
 
