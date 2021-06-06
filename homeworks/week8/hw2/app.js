@@ -1,15 +1,42 @@
 const errorMsg = 'Oops! 出錯囉，請再試一次！'
-const apiURL = 'https://api.twitch.tv/kraken/streams'
+const streamApiURL = 'https://api.twitch.tv/kraken/streams'
+const topGameApiURL = 'https://api.twitch.tv/kraken/games/top'
 const clientID = '6vlusvplvbxvb1xrut6lbqj9msndbo'
 const gameBlockWrapper = document.querySelector('.game__block-wrapper')
 const showMoreBtn = document.querySelector('.show-more-btn')
+const navOptionWrapper = document.querySelector('.nav__option-wrapper')
 let ciikShowMoretimes = 0
 
-function getData(callBack, gameName, numberLimit) {
-  const request = new XMLHttpRequest() // 實體化 XMLHttpRequest 物件
-  request.onload = function() { // 當 onload 事件發生，呼叫後面的函式
+function getTopGame(callBack) {
+  const request = new XMLHttpRequest()
+  request.onload = function() {
     let json
-    if (request.status >= 200 && request.status < 400) { // 錯誤處理
+    if (request.status >= 200 && request.status < 400) {
+      try {
+        json = JSON.parse(request.response)
+      } catch (error) {
+        callBack(errorMsg)
+      }
+
+      if (!json) { return callBack(errorMsg) }
+
+      callBack(null, json.top)
+    } else {
+      callBack(errorMsg)
+    }
+  }
+  request.onerror = () => { callBack(errorMsg) }
+  request.open('GET', topGameApiURL, true)
+  request.setRequestHeader('Client-ID', clientID)
+  request.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json')
+  request.send()
+}
+
+function getData(callBack, gameName, numberLimit) {
+  const request = new XMLHttpRequest()
+  request.onload = function() {
+    let json
+    if (request.status >= 200 && request.status < 400) {
       try {
         json = JSON.parse(request.response)
       } catch (error) {
@@ -26,13 +53,13 @@ function getData(callBack, gameName, numberLimit) {
 
   request.onerror = () => { callBack(errorMsg) }
   const params = `game=${gameName}&limit=${numberLimit}`
-  request.open('GET', `${apiURL}?${params}`, true) // 用 GET 發 request 到 google.com， 使用非同步
+  request.open('GET', `${streamApiURL}?${params}`, true)
   request.setRequestHeader('Client-ID', clientID)
   request.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json')
-  request.send() // 真正傳出 request
+  request.send()
 }
 
-function render(gameName, numberLimit) {
+function renderData(gameName, numberLimit) {
   getData((err, data) => { // api 是按照觀看人數高到低回傳的，不用處理排序
     if (err) return alert(err)
     document.querySelector('.main__game-title').innerHTML = gameName
@@ -54,26 +81,27 @@ function render(gameName, numberLimit) {
   }, gameName, numberLimit)
 }
 
-function switchGame() {
-  ciikShowMoretimes = 0
-  gameBlockWrapper.innerHTML = ''
-  const allGameOptions = document.querySelectorAll('.nav__option')
-  allGameOptions.forEach((gameOption) => {
-    gameOption.addEventListener('click', (e) => { render(e.target.innerHTML, 20) })
+function init() {
+  // get top 5 game data, render navagation bar and default page
+  getTopGame((err, data) => {
+    if (err) return alert(err)
+    const topFiveData = data.slice(0, 5)
+    renderData(data[0].game.name, 20)
+    for (const game of topFiveData) {
+      navOptionWrapper.innerHTML += `<div class="nav__option">${game.game.name}</div>`
+    }
   })
-}
-
-function showMoreGame() {
+  // add eventlistener to show more btn
   showMoreBtn.addEventListener('click', (e) => {
     ciikShowMoretimes++
-    render(e.target.getAttribute('name'), 20 + (20 * ciikShowMoretimes))
+    renderData(e.target.getAttribute('name'), 20 + (20 * ciikShowMoretimes))
   })
-}
-
-function init() {
-  switchGame()
-  showMoreGame()
-  render('League of Legends', 20)
+  // add eventlistener to parent element, event delegation for switch game option
+  navOptionWrapper.addEventListener('click', (e) => {
+    ciikShowMoretimes = 0
+    gameBlockWrapper.innerHTML = ''
+    renderData(e.target.innerHTML, 20)
+  })
 }
 
 init()

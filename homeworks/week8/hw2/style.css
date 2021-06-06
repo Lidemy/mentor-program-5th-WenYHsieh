@@ -56,6 +56,10 @@ main{
   transform: scale(1.05);
   opacity: 1
 }
+.main__game-block:hover .main__game-preview{
+  transform: scale(1.05);
+  opacity: 1
+}
 
 .game__block-wrapper{
   max-width: 1100px;
