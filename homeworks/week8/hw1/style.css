@@ -122,7 +122,7 @@ footer{
 }
 
 .lottery_btn{
-  width: 400px;
+  max-width: 400px;
   height: 55px;
   font-size: 20px;
   color: white;
@@ -234,7 +234,11 @@ footer{
     width: 280px
   }
   .lottery__info-title{
+<<<<<<< HEAD
     font-size: 15px;
+=======
+    font-size: 20px;
+>>>>>>> b923e599bf5619a395b80f72796b7f726884d393
     margin: 20px 30px;
   }
   .lottery_btn{
