@@ -16,11 +16,12 @@ HTTP protocol 是無狀態的 (stateful)，意即無法保存每個來自 client
 #### Cookie 是甚麼？
 
 - 一個小型文字檔，為實作 Session 而生，基本的模樣會有加密過的 Session (一對 key/value ) 組成。
+- Cookie 本身是個儲存容器，身分識別只是其中一個用途。
 
 #### 在 HTTP 這一層要怎麼設定 Cookie，瀏覽器又是怎麼把 Cookie 帶去 Server 的？
 
-- 通常由 Server 產生，會在 response header 帶著，瀏覽器收到後會將裡面的資訊存在我們的硬碟或是記憶體中。
-- expire: Cookie 是有期限的，只要還在期限內每次發 request 瀏覽器都會自動把 Cookie 帶上。若無特別設定 Cookie 的期限十分短，在關閉瀏覽器後就會消失了。
+- 通常由 Server 產生，會在 Set-Cookie response header 帶著，瀏覽器收到後會將裡面的資訊存在我們的硬碟或是記憶體中。
+- expire: Cookie 是有期限的，只要還在期限內每次發 request 瀏覽器都會自動把 Cookie 帶在 Cookie request header。若無特別設定 Cookie 的期限十分短，在關閉瀏覽器後就會消失了。
 - path: Cookie 的存取是有範圍的，這個 path 底下的路徑都能夠共享 Cookie 。
 - domain: 和 path 類似，規範了可以共享 Cookie 的 domains。
 
