@@ -1,0 +1,134 @@
+body {
+  background: #f7f7f7;
+  box-sizing: border-box;
+  font-family: 'Noto Serif TC', serif;
+}
+
+html{
+  font-size: 18px;
+}
+
+.warning{
+  background: #ffc4c6;
+  color: #a20606;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.panel{
+  background-color: white;
+  max-width: 700px;
+  width: 100%;
+  border-radius: 5px;
+  margin: 10px auto;
+  padding: 20px;
+}
+
+.panel__title{
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 20px 0px;
+
+}
+
+input.form__username{
+  margin: 10px 0px 0px 10px;
+  border: 1px solid #c2dffb;
+  padding: 5px;
+}
+
+textarea{
+  border: 1px solid #c2dffb;
+  margin: 10px 0px;
+  padding:5px;
+  width: 100%;
+}
+
+textarea::placeholder{
+  color:#5c9edc;
+}
+
+textarea:focus, input:focus{
+  outline:none;
+  border: 1px solid rgb(157, 201, 241);
+}
+
+form, .card{
+  padding: 5px;
+}
+
+.panel__btn{
+  padding: 10px;
+  border: 1px solid #c2dffb;
+  width: 100px;
+  color: #583c63;
+  font-size: 0.8 rem;
+  background: white;
+  margin-top:10px;
+}
+
+.panel__btn:hover{
+  background: #f2eff5b7;
+  cursor: pointer;
+}
+
+hr{
+  margin-top: 20px;
+  max-width: 95%;
+  background-color:#ece9e9dc;
+}
+
+.card__avatar{
+  background-color: #e4f0fb;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  margin-right: 10px;
+}
+
+.card{
+  display: flex;
+  font-size: 0.8 rem;
+}
+
+.card__body{
+  flex:1;
+}
+
+.card__body-username{
+  font-weight: bold;
+  color: #5c9edc;
+  max-width: 90%;
+  overflow-wrap: break-word;
+}
+
+.card__body-date{
+  color:gray;
+}
+
+.card__body-content{
+  max-width: 90%;
+  margin: 5px 0px;
+  color:rgb(0, 0, 0);
+  white-space: pre-line;
+  word-break: break-word;
+}
+
+.err{
+  color:red;
+  padding-left: 5px;
+}
+
+a.panel__btn{
+  text-decoration: none;
+  color: black;
+  margin: 0px 10px;
+  text-align: center;
+}
+
+.panel__membership-btn-wrapper{
+  display: flex;
+  justify-content:flex-end;
+}
