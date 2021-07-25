@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <title>To-do List</title>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <section class="board">
+          <h3 class='title'> todos </h3>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control board__input-todo">
+          </div>
+          <div class="board__todo-container"></div>
+          <div class="board__options">
+            <div class="board__todo-number"> 0 items Left </div>
+            <button type="button" class="btn btn-light save-todo">Save todos</button>
+          </div>
+          <div class="text-center">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-warning all">All</button>
+              <button type="button" class="btn btn-danger active">Active</button>
+              <button type="button" class="btn btn-success completed">Completed</button>
+              <button type="button" class="btn btn-info clear-completed">Clear completed</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="warnning">
+      please click "Save todos" to save changes
+    </div>
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="app.js"></script>
+</html>
