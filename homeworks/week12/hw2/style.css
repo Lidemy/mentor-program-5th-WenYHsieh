@@ -1,0 +1,55 @@
+.title{
+  font-weight: bold;
+  text-align: center;
+  color:#8f9393;
+  font-size: 50px;
+}
+.container{
+  max-width: 500px;
+  padding: 20px;
+  border: 1px solid gray;
+  position:absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 5px 9px 10px 3px #D7D7D7;
+}
+.mb-3{
+  margin-bottom: 5px !important;
+}
+.board__input-todo{
+  margin-bottom: 20px;
+}
+.btn-close{
+  padding-top: 20px;
+  margin-left: 10px !important;
+}
+.btn-close:focus {
+  outline: none;
+  box-shadow: none;
+}
+.text-center {
+  margin-top: 20px;
+}
+.board__options{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-light{
+  margin-left: 10px !important;
+}
+.hide{
+  display: none;
+}
+.warnning{
+  margin-top: 10px;
+  color: #8f9393;
+  text-align: center;
+  letter-spacing: 1px;
+}
+.checked{
+  color: #8f9393;
+  text-decoration: line-through;
+  pointer-events: none;
+}
