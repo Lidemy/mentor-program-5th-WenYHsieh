@@ -7,8 +7,8 @@ const showMoreBtn = document.querySelector('.show-more-btn')
 const navOptionWrapper = document.querySelector('.nav__option-wrapper')
 let ciikShowMoretimes = 0
 
-function getTopGame(callBack) {
-  fetch(topGameApiURL, {
+function getTopGame() {
+  return fetch(topGameApiURL, {
     headers: {
     'Accept': 'application/vnd.twitchtv.v5+json',
     'Client-ID': clientID
@@ -16,41 +16,26 @@ function getTopGame(callBack) {
     .then((result) => {
       return result.json()
     })
-    .then((data) => {
-      callBack(null, data.top)
-    })
-    .catch((err) => {
-      console.error(err)
-      callBack(err)
-    }) 
 }
 
-function getData(callBack, gameName, numberLimit) {
+function getData(gameName, numberLimit) {
   const params = `game=${gameName}&limit=${numberLimit}`
-  fetch(`${streamApiURL}?${params}`, {
+  return fetch(`${streamApiURL}?${params}`, {
     headers: {
     'Accept': 'application/vnd.twitchtv.v5+json',
     'Client-ID': clientID
     }})
     .then((result) => {
       return result.json()
-    })
-    .then((data) => {
-      callBack(null, data.streams)
-    })
-    .catch((err) => {
-      console.error(err)
-      callBack(err)
     })
 }
 
 function renderData(gameName, numberLimit) {
-  getData((err, data) => { // api 是按照觀看人數高到低回傳的，不用處理排序
-    if (err) return alert(err)
+  getData(gameName, numberLimit).then((data) => {
     document.querySelector('.main__game-title').innerHTML = gameName
     showMoreBtn.setAttribute('name', gameName)
     gameBlockWrapper.innerHTML = ''
-    data.forEach((game) => {
+    data.streams.forEach((game) => {
       gameBlockWrapper.innerHTML += `<div class="main__game-block">
       <a href=${game.channel.url}><img class="main__game-preview" src=${game.preview.medium} border="0"></a>
         <div class="main__game-channel-wrapper">
@@ -63,19 +48,25 @@ function renderData(gameName, numberLimit) {
     </div>
   `
     })
-  }, gameName, numberLimit)
+  })
+  .catch((err) => {
+    console.error(err)
+  })
 }
 
 function init() {
   // get top 5 game data, render navagation bar and default page
-  getTopGame((err, data) => {
-    if (err) return alert(err)
-    const topFiveData = data.slice(0, 5)
-    renderData(data[0].game.name, 20)
+  getTopGame().then((data)=>{
+    const topFiveData = data.top.slice(0, 5)
+    renderData(data.top[0].game.name, 20)
     for (const game of topFiveData) {
       navOptionWrapper.innerHTML += `<div class="nav__option">${game.game.name}</div>`
     }
   })
+  .catch((err) => {
+    console.error(err)
+  }) 
+
   // add eventlistener to show more btn
   showMoreBtn.addEventListener('click', (e) => {
     ciikShowMoretimes++
