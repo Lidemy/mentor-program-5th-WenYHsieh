@@ -5,6 +5,18 @@ const clientID = '6vlusvplvbxvb1xrut6lbqj9msndbo'
 const gameBlockWrapper = document.querySelector('.game__block-wrapper')
 const showMoreBtn = document.querySelector('.show-more-btn')
 const navOptionWrapper = document.querySelector('.nav__option-wrapper')
+const template = `
+  <div class="main__game-block">
+    <a href=$gameChannelUrl><img class="main__game-preview" src=$gamePreviewMedium border="0"></a>
+    <div class="main__game-channel-wrapper">
+      <img class="main__game-channel-logo" src=$gameChannelLogo></img>
+      <div class="main__game-name-wrapper"> 
+        <div class='main__game-stream-name'>$gameChannelStatus</div>
+        <div class="main__game-channel-name">$gameChannelName</div>
+      </div>
+    </div>
+  </div>
+`
 let ciikShowMoretimes = 0
 
 function getTopGame() {
@@ -28,29 +40,22 @@ function getData(gameName, numberLimit) {
     .then((result) => {
       return result.json()
     })
+    .catch((err) => {
+      console.error(err)
+    })
 }
 
-function renderData(gameName, numberLimit) {
-  getData(gameName, numberLimit).then((data) => {
-    document.querySelector('.main__game-title').innerHTML = gameName
-    showMoreBtn.setAttribute('name', gameName)
-    gameBlockWrapper.innerHTML = ''
-    data.streams.forEach((game) => {
-      gameBlockWrapper.innerHTML += `<div class="main__game-block">
-      <a href=${game.channel.url}><img class="main__game-preview" src=${game.preview.medium} border="0"></a>
-        <div class="main__game-channel-wrapper">
-          <img class="main__game-channel-logo" src=${game.channel.logo}></img>
-          <div class="main__game-name-wrapper"> 
-            <div class='main__game-stream-name'>${game.channel.status.substring(0, 15)} ...</div>
-            <div class="main__game-channel-name">${game.channel.name}</div>
-          </div>
-        </div>
-    </div>
-  `
-    })
-  })
-  .catch((err) => {
-    console.error(err)
+function renderData(data, gameName) {
+  document.querySelector('.main__game-title').innerHTML = gameName
+  showMoreBtn.setAttribute('name', gameName)
+  gameBlockWrapper.innerHTML = ''
+  data.streams.forEach((game) => {
+    gameBlockWrapper.innerHTML += template
+      .replace('$gameChannelUrl', game.channel.url)
+      .replace('$gamePreviewMedium', game.preview.medium)
+      .replace('$gameChannelLogo', game.channel.logo)
+      .replace('$gameChannelStatus', game.channel.status.substring(0, 15))
+      .replace('$gameChannelName', game.channel.name)
   })
 }
 
@@ -58,7 +63,8 @@ function init() {
   // get top 5 game data, render navagation bar and default page
   getTopGame().then((data)=>{
     const topFiveData = data.top.slice(0, 5)
-    renderData(data.top[0].game.name, 20)
+    const topGameName = data.top[0].game.name
+    getData(topGameName, 20).then((data) => {renderData(data, topGameName)})
     for (const game of topFiveData) {
       navOptionWrapper.innerHTML += `<div class="nav__option">${game.game.name}</div>`
     }
@@ -70,13 +76,14 @@ function init() {
   // add eventlistener to show more btn
   showMoreBtn.addEventListener('click', (e) => {
     ciikShowMoretimes++
-    renderData(e.target.getAttribute('name'), 20 + (20 * ciikShowMoretimes))
+    let activeGameName = e.target.getAttribute('name')
+    getData(activeGameName, 20 + (20 * ciikShowMoretimes)).then((data) => {renderData(data, activeGameName)})
   })
   // add eventlistener to parent element, event delegation for switch game option
   navOptionWrapper.addEventListener('click', (e) => {
     ciikShowMoretimes = 0
     gameBlockWrapper.innerHTML = ''
-    renderData(e.target.innerHTML, 20)
+    getData(e.target.innerHTML, 20).then((data) => {renderData(data, e.target.innerHTML)})
   })
 }
 
