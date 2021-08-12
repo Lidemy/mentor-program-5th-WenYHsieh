@@ -61,15 +61,19 @@ function renderData(data, gameName) {
 }
 
 async function init() {
-  // get top 5 game data, render navagation bar and default page
-  const topGameData = await getTopGame()
-  const topFiveData = topGameData.top.slice(0, TOP_GAME_QUANTITY)
-  const topGameName = topGameData.top[0].game.name
-  const data = await getData(topGameName, CARD_QUANTITY)
-  renderData(data, topGameName)
-  for (const game of topFiveData) {
-    navOptionWrapper.innerHTML += `<div class="nav__option">${game.game.name}</div>`
+  try {
+    const topGameData = await getTopGame()
+    const topFiveData = topGameData.top.slice(0, TOP_GAME_QUANTITY)
+    const topGameName = topGameData.top[0].game.name
+    const data = await getData(topGameName, CARD_QUANTITY)
+    renderData(data, topGameName)
+    for (const game of topFiveData) {
+      navOptionWrapper.innerHTML += `<div class="nav__option">${game.game.name}</div>`
+    }
+  } catch (err) {
+    console.log(err)
   }
+
   // add eventlistener to show more btn
   showMoreBtn.addEventListener('click', async(e) => {
     ciikShowMoretimes++
@@ -77,6 +81,7 @@ async function init() {
     const data = await getData(activeGameName, CARD_QUANTITY + (CARD_QUANTITY * ciikShowMoretimes))
     renderData(data, activeGameName)
   })
+
   // add eventlistener to parent element, event delegation for switch game option
   navOptionWrapper.addEventListener('click', async(e) => {
     ciikShowMoretimes = 0
