@@ -1,4 +1,3 @@
-const errorMsg = 'Oops! 出錯囉，請再試一次！'
 const streamApiURL = 'https://api.twitch.tv/kraken/streams'
 const topGameApiURL = 'https://api.twitch.tv/kraken/games/top'
 const clientID = '6vlusvplvbxvb1xrut6lbqj9msndbo'
@@ -17,29 +16,31 @@ const template = `
     </div>
   </div>
 `
+const TOP_GAME_QUANTITY = 5
+const CARD_QUANTITY = 20
+
 let ciikShowMoretimes = 0
 
 function getTopGame() {
   return fetch(topGameApiURL, {
     headers: {
-    'Accept': 'application/vnd.twitchtv.v5+json',
-    'Client-ID': clientID
-    }})
-    .then((result) => {
-      return result.json()
-    })
+      Accept: 'application/vnd.twitchtv.v5+json',
+      'Client-ID': clientID
+    }
+  })
+    .then((result) => result.json())
+    .catch((err) => console.log(err))
 }
 
 function getData(gameName, numberLimit) {
   const params = `game=${gameName}&limit=${numberLimit}`
   return fetch(`${streamApiURL}?${params}`, {
     headers: {
-    'Accept': 'application/vnd.twitchtv.v5+json',
-    'Client-ID': clientID
-    }})
-    .then((result) => {
-      return result.json()
-    })
+      Accept: 'application/vnd.twitchtv.v5+json',
+      'Client-ID': clientID
+    }
+  })
+    .then((result) => result.json())
     .catch((err) => {
       console.error(err)
     })
@@ -59,31 +60,29 @@ function renderData(data, gameName) {
   })
 }
 
-function init() {
+async function init() {
   // get top 5 game data, render navagation bar and default page
-  getTopGame().then((data)=>{
-    const topFiveData = data.top.slice(0, 5)
-    const topGameName = data.top[0].game.name
-    getData(topGameName, 20).then((data) => {renderData(data, topGameName)})
-    for (const game of topFiveData) {
-      navOptionWrapper.innerHTML += `<div class="nav__option">${game.game.name}</div>`
-    }
-  })
-  .catch((err) => {
-    console.error(err)
-  }) 
-
+  const topGameData = await getTopGame()
+  const topFiveData = topGameData.top.slice(0, TOP_GAME_QUANTITY)
+  const topGameName = topGameData.top[0].game.name
+  const data = await getData(topGameName, CARD_QUANTITY)
+  renderData(data, topGameName)
+  for (const game of topFiveData) {
+    navOptionWrapper.innerHTML += `<div class="nav__option">${game.game.name}</div>`
+  }
   // add eventlistener to show more btn
-  showMoreBtn.addEventListener('click', (e) => {
+  showMoreBtn.addEventListener('click', async(e) => {
     ciikShowMoretimes++
-    let activeGameName = e.target.getAttribute('name')
-    getData(activeGameName, 20 + (20 * ciikShowMoretimes)).then((data) => {renderData(data, activeGameName)})
+    const activeGameName = e.target.getAttribute('name')
+    const data = await getData(activeGameName, CARD_QUANTITY + (CARD_QUANTITY * ciikShowMoretimes))
+    renderData(data, activeGameName)
   })
   // add eventlistener to parent element, event delegation for switch game option
-  navOptionWrapper.addEventListener('click', (e) => {
+  navOptionWrapper.addEventListener('click', async(e) => {
     ciikShowMoretimes = 0
     gameBlockWrapper.innerHTML = ''
-    getData(e.target.innerHTML, 20).then((data) => {renderData(data, e.target.innerHTML)})
+    const data = await getData(e.target.innerHTML, CARD_QUANTITY)
+    renderData(data, e.target.innerHTML)
   })
 }
 
